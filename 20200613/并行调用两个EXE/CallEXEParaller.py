@@ -18,22 +18,22 @@ SECONDS_TIMEOUT = 1000
 
 def execute_exe(exe_path, exe_param):
     folder_path, file_name = os.path.split(exe_path)
-    os.chdir(folder_path)
-    p = subprocess.Popen(exe_path + " " + exe_param, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    # os.chdir(folder_path)
+    p = subprocess.Popen(exe_path + " " + exe_param, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=folder_path)
     try:
         p.wait(timeout=SECONDS_TIMEOUT)
     except Exception as e:
         p.kill()
-        os.chdir(current_path)
+        # os.chdir(current_path)
         print("===== process timeout ======")
         return None
     except:
         s = sys.exc_info()
         str_error = "Error '%s' happened on line %d" % (s[1], s[2].tb_lineno)
         p.kill()
-        os.chdir(current_path)
+        # os.chdir(current_path)
         return None
-    os.chdir(current_path)
+    # os.chdir(current_path)
     output = p.communicate()[0]
     err = p.communicate()[1]
     print(output)
@@ -42,9 +42,12 @@ def execute_exe(exe_path, exe_param):
 
 if __name__ == '__main__':
     current_path = os.getcwd()
+    readini_abs_path = current_path + "\\" + r"EXEModule\ReadINI\readini.exe"
     rose_abs_path = current_path + "\\" + r"EXEModule\Rose\rose.exe"
     usage_abs_path = current_path + "\\" + r"EXEModule\CPUUsage\CPUUsage.exe"
-    t1 = threading.Thread(target=execute_exe, args=(rose_abs_path, ""))
-    t2 = threading.Thread(target=execute_exe, args=(usage_abs_path, ""))
+    t1 = threading.Thread(target=execute_exe, args=(readini_abs_path, ""))
+    t2 = threading.Thread(target=execute_exe, args=(rose_abs_path, ""))
+    t3 = threading.Thread(target=execute_exe, args=(usage_abs_path, ""))
     t1.start()
     t2.start()
+    t3.start()
