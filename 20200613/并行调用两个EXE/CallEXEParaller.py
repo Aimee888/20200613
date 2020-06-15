@@ -20,6 +20,7 @@ def execute_exe(exe_path, exe_param):
     folder_path, file_name = os.path.split(exe_path)
     # os.chdir(folder_path)
     p = subprocess.Popen(exe_path + " " + exe_param, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=folder_path)
+    print(os.getcwd())
     try:
         p.wait(timeout=SECONDS_TIMEOUT)
     except Exception as e:
