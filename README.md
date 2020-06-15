@@ -9,3 +9,6 @@ Code of 20200613 to 20200713
 &emsp;匿名函数lambda和for循环的嵌套，有点绕，好玩  
 ## 20200615
 1. 写一个酷我音乐下载的程序
+2. 列表的学习 以及 循环的学习  
+&emsp;增删改查：(append), (remove, pop, clear), (list[0]=2), (list[2])  
+&emsp;利用循环写一个九九乘法表for row in range(1, 10)
