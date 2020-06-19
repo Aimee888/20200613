@@ -1,4 +1,6 @@
 # CallEXEParaller.py
+### 链接
+https://www.cnblogs.com/smart-zihan/p/11939748.html
 ### 目的
 并行调用两个或两个以上的EXE程序  
 ### 导入库
@@ -19,6 +21,11 @@ V0.0.0.1 并行调用rose.exe和Usage.exe
 如果exe里面需要调用文件并且用的相对路径，可能会报错，这个程序之所以通过，可能是因为Rose.exe不需要用到文件，执行Usage.exe
 的时候已经在Usage.exe的目录中了，这存在一个概率问题，当并行程序少时，刚好两个程序都执行到切换路径语句的概率是比较小的，
 但是这也是个隐患。  
+
 V0.0.0.2 并行调用rose.exe，Usage.exe，readini.exe  
 &emsp;&emsp;&emsp;刚开始，出现了在V0.0.0.1中担心的问题，因为路径切换导致readini.exe找不到“TEST”这个Key。
-后来发现subprocess函数里面有个参数cwd可以直接指定运行路径，完美解决问题。
+后来发现subprocess函数里面有个参数cwd可以直接指定运行路径，完美解决问题。  
+
+V0.0.0.3 并行调用rose.exe，Usage.exe，readini.exe  
+后来运行程序的时候发现用多线程的方法，由于p.communicate()[0]的存在，会导致打印阻塞，一直等到耗时长的程序执行完才会打印消息
+这样消息显示不及时，有阻塞发生，后来发现了一种多进程的方法，可以完全隔离开两个程序。

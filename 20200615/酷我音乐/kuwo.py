@@ -29,7 +29,7 @@ def get_music(rid, name):
 
 
 def main():
-    url = "http://www.kuwo.cn/api/www/search/searchMusicBykeyWord?key={}&pn={}&rn=30&reqId=615ae920-2d21-11ea-b560-73e04c9f8018".format("周深", 1)
+    url = "http://www.kuwo.cn/api/www/search/searchMusicBykeyWord?key={}&pn={}&rn=30&reqId=615ae920-2d21-11ea-b560-73e04c9f8018".format("毛不易", 1)
     html = requests.get(url, headers=headers).json()
     data = html["data"]["list"]
     for song in data:
@@ -39,4 +39,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    get_music(54961454, "梅香如故")
+    # main()
