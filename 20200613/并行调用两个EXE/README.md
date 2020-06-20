@@ -27,5 +27,9 @@ V0.0.0.2 并行调用rose.exe，Usage.exe，readini.exe
 后来发现subprocess函数里面有个参数cwd可以直接指定运行路径，完美解决问题。  
 
 V0.0.0.3 并行调用rose.exe，Usage.exe，readini.exe  
-后来运行程序的时候发现用多线程的方法，由于p.communicate()[0]的存在，会导致打印阻塞，一直等到耗时长的程序执行完才会打印消息
-这样消息显示不及时，有阻塞发生，后来发现了一种多进程的方法，可以完全隔离开两个程序。
+&emsp;&emsp;&emsp;后来运行程序的时候发现用多线程的方法，由于p.communicate()[0]的存在，会导致打印阻塞，一直等到耗时长的程序执行完才会打印消息
+这样消息显示不及时，有阻塞发生，后来发现了一种多进程的方法，可以完全隔离开两个程序。  
+
+V0.0.0.4 并行调用rose.exe，Usage.exe，readini.exe  
+&emsp;&emsp;&emsp;多进程的方法可以解决打印阻塞的问题，不过如果在一个继承了QTread的类中调用multiprocessing，会直接报错
+所以找到了一个方法QProcess调用exe可以完美替代subprocess函数，使用多线程调用QProcess也不会发生阻塞问题。
